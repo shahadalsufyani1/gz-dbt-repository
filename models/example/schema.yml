@@ -1,5 +1,16 @@
 
 version: 2
+sources:
+  - name: raw
+     models:
+      - name: gz_raw_data
+        tables:
+
+        - name: sales 
+          identifier: raw_gz_sales
+
+
+
 
 models:
     - name: my_first_dbt_model
