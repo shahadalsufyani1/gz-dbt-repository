@@ -1,10 +1,12 @@
-SELECT
-  orders_id,
-  max(date_date) as date_date,
-  ROUND(SUM(revenue),2) as revenue,
-  ROUND(SUM(quantity),2) as quantity,
-  ROUND(SUM(purchase_cost),2) as purchase_cost,
-  ROUND(SUM(margin),2) as margin
-FROM {{ ref("int_sales_margin") }}
-GROUP BY orders_id
-ORDER BY orders_id DESC
+SELECT 
+    products_id, 
+    date_date, 
+    orders_id,
+    revenue, 
+    quantity, 
+    CAST(purchase_prise AS FLOAT64), 
+    ROUND(s.quantity*CAST(p.purchase_prise AS FLOAT64),2) AS purchase_cost,
+    s.revenue - ROUND(s.quantity*CAST(p.purchase_prise AS FLOAT64),2) AS margin
+FROM {{ ref('stg_raw__sales') }} s
+LEFT JOIN {{ ref('stg_raw__product') }} p 
+    ON s.pdt_id = p.products_id
