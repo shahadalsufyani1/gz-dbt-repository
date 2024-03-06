@@ -1,12 +1,12 @@
 version: 2
 sources:
   - name: raw
-     database:optimal-analogy-414708
-     schema: gz_raw_data
+    database: optimal-analogy-414708
+    schema: gz_raw_data
     tables:
       - name: raw_gz_sales
-      identifier: sales
+        identifier: sales
       - name: raw_gz_ship
-      identifier: ship
+        identifier: ship
       - name: raw_gz_product
-      identifier:product
+        identifier: product
